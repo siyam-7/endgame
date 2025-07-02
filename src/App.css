@@ -45,3 +45,17 @@ header p{
 .status p{
   font-size: 1rem;
 }
+
+.languages{
+  display:flex;
+  flex-wrap: wrap;
+  max-width: 20rem;
+  justify-content: center;
+  gap:0.3rem;
+}
+.language{
+  border-radius: 0.15rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding:0.3rem;
+}

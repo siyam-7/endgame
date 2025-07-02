@@ -1,5 +1,8 @@
 import "./App.css";
+import Language from "./Language";
+import { languages } from "./languages";
 export default function App() {
+  const langlist = languages.map(language => <Language name={language.name} color={language.color} backgroundColor={language.backgroundColor} /> )
   return (
     <main>
       <header>
@@ -12,6 +15,9 @@ export default function App() {
       <section className="status">
         <h2>You Win!</h2>
         <p>Well done! 🎉</p>
+      </section>
+      <section className="languages">
+       {langlist}
       </section>
     </main>
   );
