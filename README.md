@@ -1,12 +1,34 @@
-# React + Vite
+# 🧠 Assembly: Endgame
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Guess the word in under 8 attempts to keep the programming world safe from Assembly!**
 
-Currently, two official plugins are available:
+A React-based word-guessing game inspired by Wordle. Your mission is to crack the codeword using logic, memory, and programming intuition — all before Assembly takes over!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🎮 Interactive word guessing game with up to 8 attempts
+- 🟩 Real-time feedback on correct and misplaced letters
+- 🧩 Simple and intuitive UI
+- 📱 Fully responsive and accessible
+- ⚛️ Built using modern React with functional components and hooks
+
+---
+
+## 🛠️ Tech Stack
+
+- **React** (Vite setup)
+- **CSS Flex/Grid** for layout
+- **JavaScript** (ES6+)
+- **Vite** for fast dev server & build process
+
+---
+
+## 📦 Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/siyam-7/endgame.git
+cd assembly-endgame
