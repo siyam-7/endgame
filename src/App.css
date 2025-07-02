@@ -1,6 +1,8 @@
 body{
   background-color: #282726;
   font-family: "Hanken-Grotesk", Arial, sans-serif;
+  text-align: center;
+
 }
 main{
   display: flex;
@@ -17,15 +19,29 @@ header{
   align-items: center;
   justify-content: center;
 }
-header h2{
+h2{
   font-size: 1.25rem;
   font-weight: 500;
-  margin: 10px;
+  margin: 10px 0 0 0;
+}
+p{
+  margin:0;
 }
 header p{
-  margin:0;
   font-size: 0.875rem;
   color:#8E8E8E;
   max-width: 352px;
-  text-align: center;
+  margin: 10px 0 0 0;
+
+}
+
+.status{
+  background-color: #10A95B;
+  min-width: 22rem;
+  min-height:3.7rem;
+  margin:10px;
+  border-radius: 0.5rem;
+}
+.status p{
+  font-size: 1rem;
 }
