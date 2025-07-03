@@ -4,11 +4,18 @@ import Language from "./Language";
 import { languages } from "./languages";
 export default function App() {
   const [currentWord,setCurrentWord] = useState("react");
+  const [guessedLetter, setGuessedLetter] =useState([]);
+  console.log(guessedLetter);
   const letters = currentWord.split("");
   const word = letters.map(letter => <span>{letter.toUpperCase()}</span>)
   const langlist = languages.map(language => <Language name={language.name} color={language.color} backgroundColor={language.backgroundColor} /> )
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  const keyboard = alphabet.map(key => <button>{key}</button>)
+  const keyboard = alphabet.map(key => <button onClick={() => handleKey(key)}>{key}</button>)
+
+  function handleKey(key){
+      setGuessedLetter(prevLetter=>
+        prevLetter.includes(key)?prevLetter:[...prevLetter, key])
+  }
   return (
     <main>
       <header>
