@@ -39,7 +39,7 @@ header p{
   background-color: #10A95B;
   min-width: 22rem;
   min-height:3.7rem;
-  margin:10px;
+  margin:20px;
   border-radius: 0.5rem;
 }
 .status p{
@@ -52,6 +52,7 @@ header p{
   max-width: 20rem;
   justify-content: center;
   gap:0.3rem;
+  margin:10px;
 }
 .language{
   border-radius: 0.15rem;
