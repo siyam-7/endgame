@@ -1,7 +1,11 @@
+import { useState } from "react";
 import "./App.css";
 import Language from "./Language";
 import { languages } from "./languages";
 export default function App() {
+  const [currentWord,setCurrentWord] = useState("react");
+  const letters = currentWord.split("");
+  const word = letters.map(letter => <span>{letter.toUpperCase()}</span>)
   const langlist = languages.map(language => <Language name={language.name} color={language.color} backgroundColor={language.backgroundColor} /> )
   return (
     <main>
@@ -18,6 +22,9 @@ export default function App() {
       </section>
       <section className="languages">
        {langlist}
+      </section>
+      <section className="word">
+        {word}
       </section>
     </main>
   );

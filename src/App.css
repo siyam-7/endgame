@@ -60,3 +60,18 @@ header p{
   font-weight: 700;
   padding:0.3rem;
 }
+
+.word{
+  margin: 1.5rem;
+}
+.word span{
+  margin:0.0875rem;
+  display:inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #323232;
+  border-bottom-style: solid;
+  border-bottom-color: #F9F4DA;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+}
