@@ -1,6 +1,6 @@
 body{
   background-color: #282726;
-  font-family: "Hanken-Grotesk", Arial, sans-serif;
+  font-family: "Hanken Grotesk", Arial, sans-serif;
   text-align: center;
 
 }
@@ -74,4 +74,28 @@ header p{
   border-bottom-color: #F9F4DA;
   min-width: 2.5rem;
   min-height: 2.5rem;
+}
+
+.keyboard{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 30rem;
+  gap:0.4rem;
+}
+
+.keyboard button{
+  background-color: #FCBA29;
+  color: #1E1E1E;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-color: #D7D7D7;
+  border-width: 1px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: inherit;
 }

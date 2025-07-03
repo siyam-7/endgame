@@ -7,6 +7,8 @@ export default function App() {
   const letters = currentWord.split("");
   const word = letters.map(letter => <span>{letter.toUpperCase()}</span>)
   const langlist = languages.map(language => <Language name={language.name} color={language.color} backgroundColor={language.backgroundColor} /> )
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  const keyboard = alphabet.map(key => <button>{key}</button>)
   return (
     <main>
       <header>
@@ -25,6 +27,9 @@ export default function App() {
       </section>
       <section className="word">
         {word}
+      </section>
+      <section className="keyboard">
+        {keyboard}
       </section>
     </main>
   );
