@@ -85,8 +85,8 @@ header p{
   gap:0.4rem;
 }
 
-.keyboard button{
-  background-color: #FCBA29;
+.key{
+background-color: #FCBA29;
   color: #1E1E1E;
   width: 2.5rem;
   height: 2.5rem;
@@ -98,4 +98,11 @@ header p{
   font-size: 1rem;
   cursor: pointer;
   font-family: inherit;
+}
+
+.key.clicked.correct{
+  background-color: #10A95B;
+}
+.key.clicked.wrong{
+  background-color: #EC5D49;
 }

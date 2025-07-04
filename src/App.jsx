@@ -1,4 +1,5 @@
 import { useState } from "react";
+import clsx from "clsx";
 import "./App.css";
 import Language from "./Language";
 import { languages } from "./languages";
@@ -6,11 +7,15 @@ export default function App() {
   const [currentWord,setCurrentWord] = useState("react");
   const [guessedLetter, setGuessedLetter] =useState([]);
   console.log(guessedLetter);
-  const letters = currentWord.split("");
-  const word = letters.map(letter => <span>{letter.toUpperCase()}</span>)
+  const letters = currentWord.toUpperCase().split("");
+  const word = letters.map(letter => <span>{letter}</span>)
   const langlist = languages.map(language => <Language name={language.name} color={language.color} backgroundColor={language.backgroundColor} /> )
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  const keyboard = alphabet.map(key => <button onClick={() => handleKey(key)}>{key}</button>)
+  const keyboard = alphabet.map(key => <button onClick={() => handleKey(key)} className={clsx("key",{
+   clicked: guessedLetter.includes(key),
+   correct: letters.includes(key),
+   wrong: !letters.includes(key),
+  })} >{key}</button>)
 
   function handleKey(key){
       setGuessedLetter(prevLetter=>
