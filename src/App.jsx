@@ -8,7 +8,7 @@ export default function App() {
   const [guessedLetter, setGuessedLetter] =useState([]);
   console.log(guessedLetter);
   const letters = currentWord.toUpperCase().split("");
-  const word = letters.map(letter => <span>{letter}</span>)
+  const word = letters.map(letter => <span>{guessedLetter.includes(letter)?letter:"\u00A0"}</span>)
   const langlist = languages.map(language => <Language name={language.name} color={language.color} backgroundColor={language.backgroundColor} /> )
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   const keyboard = alphabet.map(key => <button onClick={() => handleKey(key)} className={clsx("key",{
