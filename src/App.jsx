@@ -4,22 +4,39 @@ import "./App.css";
 import Language from "./Language";
 import { languages } from "./languages";
 export default function App() {
-  const [currentWord,setCurrentWord] = useState("react");
-  const [guessedLetter, setGuessedLetter] =useState([]);
-  console.log(guessedLetter);
+  const [currentWord, setCurrentWord] = useState("react");
+  const [guessedLetter, setGuessedLetter] = useState([]);
   const letters = currentWord.toUpperCase().split("");
-  const word = letters.map(letter => <span>{guessedLetter.includes(letter)?letter:"\u00A0"}</span>)
-  const langlist = languages.map(language => <Language name={language.name} color={language.color} backgroundColor={language.backgroundColor} /> )
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  const keyboard = alphabet.map(key => <button onClick={() => handleKey(key)} className={clsx("key",{
-   clicked: guessedLetter.includes(key),
-   correct: letters.includes(key),
-   wrong: !letters.includes(key),
-  })} >{key}</button>)
+  const wrongGuessCount = guessedLetter.filter(letter=>!letters.includes(letter)).length;
 
-  function handleKey(key){
-      setGuessedLetter(prevLetter=>
-        prevLetter.includes(key)?prevLetter:[...prevLetter, key])
+  const word = letters.map((letter) => (
+    <span>{guessedLetter.includes(letter) ? letter : "\u00A0"}</span>
+  ));
+  const langlist = languages.map((language) => (
+    <Language
+      name={language.name}
+      color={language.color}
+      backgroundColor={language.backgroundColor}
+    />
+  ));
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  const keyboard = alphabet.map((key) => (
+    <button
+      onClick={() => handleKey(key)}
+      className={clsx("key", {
+        clicked: guessedLetter.includes(key),
+        correct: letters.includes(key),
+        wrong: !letters.includes(key),
+      })}
+    >
+      {key}
+    </button>
+  ));
+
+  function handleKey(key) {
+    setGuessedLetter((prevLetter) =>
+      prevLetter.includes(key) ? prevLetter : [...prevLetter, key]
+    );
   }
   return (
     <main>
@@ -34,15 +51,9 @@ export default function App() {
         <h2>You Win!</h2>
         <p>Well done! 🎉</p>
       </section>
-      <section className="languages">
-       {langlist}
-      </section>
-      <section className="word">
-        {word}
-      </section>
-      <section className="keyboard">
-        {keyboard}
-      </section>
+      <section className="languages">{langlist}</section>
+      <section className="word">{word}</section>
+      <section className="keyboard">{keyboard}</section>
     </main>
   );
 }
