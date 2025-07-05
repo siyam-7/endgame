@@ -8,15 +8,19 @@ export default function App() {
   const [guessedLetter, setGuessedLetter] = useState([]);
   const letters = currentWord.toUpperCase().split("");
   const wrongGuessCount = guessedLetter.filter(letter=>!letters.includes(letter)).length;
+  const isGameOver = wrongGuessCount>=8;
 
   const word = letters.map((letter) => (
     <span>{guessedLetter.includes(letter) ? letter : "\u00A0"}</span>
   ));
-  const langlist = languages.map((language) => (
+  const langlist = languages.map((language,index) => (
+    
     <Language
+      key={index}
       name={language.name}
       color={language.color}
       backgroundColor={language.backgroundColor}
+      lost={wrongGuessCount>index}
     />
   ));
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -54,6 +58,7 @@ export default function App() {
       <section className="languages">{langlist}</section>
       <section className="word">{word}</section>
       <section className="keyboard">{keyboard}</section>
+      {isGameOver? <button className="newgamebtn">New Game</button>:null}
     </main>
   );
 }
