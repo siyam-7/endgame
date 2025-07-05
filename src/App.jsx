@@ -3,9 +3,11 @@ import clsx from "clsx";
 import "./App.css";
 import Language from "./Language";
 import { languages } from "./languages";
+import { getFarewellText } from "./utils";
 export default function App() {
   const [currentWord, setCurrentWord] = useState("react");
   const [guessedLetter, setGuessedLetter] = useState([]);
+  const [clickedLetter,setClickedLetter] = useState('');
   const letters = currentWord.toUpperCase().split("");
   const wrongGuessCount = guessedLetter.filter(
     (letter) => !letters.includes(letter)
@@ -41,11 +43,20 @@ export default function App() {
   ));
 
   function handleKey(key) {
+    setClickedLetter(key);
     setGuessedLetter((prevLetter) =>
       prevLetter.includes(key) ? prevLetter : [...prevLetter, key]
     );
   }
   function renderStatus() {
+    if(!isGameOver&&letters.includes(clickedLetter)){
+      return null;
+    }
+    if(!isGameOver&&wrongGuessCount>0){
+      return(
+        `${getFarewellText(languages[wrongGuessCount-1].name)}🫡`
+      )
+    }
     if (!isGameOver) {
       return null;
     }
@@ -76,6 +87,7 @@ export default function App() {
       </header>
       <section
         className={clsx("status", {
+          farewell:!isGameOver&&guessedLetter.length>0&&!letters.includes(clickedLetter),
           won: isGameWon,
           lost: isGameLost,
         })}

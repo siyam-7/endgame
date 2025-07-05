@@ -38,6 +38,16 @@ header p {
   margin: 20px;
   border-radius: 0.5rem;
 }
+.status.farewell{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #7A5EA7;
+  border-radius: 0;
+  border-style: dashed;
+  border-color: #323232;
+  font-style: italic;
+}
 .status.won{
   background-color: #10a95b;
 }
