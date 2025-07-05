@@ -33,11 +33,16 @@ header p {
 }
 
 .status {
-  background-color: #10a95b;
   min-width: 22rem;
   min-height: 3.7rem;
   margin: 20px;
   border-radius: 0.5rem;
+}
+.status.won{
+  background-color: #10a95b;
+}
+.status.lost{
+  background-color: #BA2A2A;
 }
 .status p {
   font-size: 1rem;

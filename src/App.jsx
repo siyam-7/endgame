@@ -7,22 +7,23 @@ export default function App() {
   const [currentWord, setCurrentWord] = useState("react");
   const [guessedLetter, setGuessedLetter] = useState([]);
   const letters = currentWord.toUpperCase().split("");
-  const wrongGuessCount = guessedLetter.filter(letter=>!letters.includes(letter)).length;
-  const isGameWon = letters.every(letter => guessedLetter.includes(letter));
-  const isGameLost = wrongGuessCount>=languages.length-1;
-  const isGameOver = isGameWon||isGameLost;
+  const wrongGuessCount = guessedLetter.filter(
+    (letter) => !letters.includes(letter)
+  ).length;
+  const isGameWon = letters.every((letter) => guessedLetter.includes(letter));
+  const isGameLost = wrongGuessCount >= languages.length - 1;
+  const isGameOver = isGameWon || isGameLost;
 
   const word = letters.map((letter) => (
     <span>{guessedLetter.includes(letter) ? letter : "\u00A0"}</span>
   ));
-  const langlist = languages.map((language,index) => (
-    
+  const langlist = languages.map((language, index) => (
     <Language
       key={index}
       name={language.name}
       color={language.color}
       backgroundColor={language.backgroundColor}
-      lost={wrongGuessCount>index}
+      lost={wrongGuessCount > index}
     />
   ));
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -44,6 +45,26 @@ export default function App() {
       prevLetter.includes(key) ? prevLetter : [...prevLetter, key]
     );
   }
+  function renderStatus() {
+    if (!isGameOver) {
+      return null;
+    }
+    if (isGameWon) {
+      return (
+        <>
+          <h2>You win!</h2>
+          <p>Well done! 🎉</p>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <h2>Game over!</h2>
+          <p>You lose! Better start learning Assembly 😭</p>
+        </>
+      );
+    }
+  }
   return (
     <main>
       <header>
@@ -53,14 +74,18 @@ export default function App() {
           from Assembly!
         </p>
       </header>
-      <section className="status">
-        <h2>You Win!</h2>
-        <p>Well done! 🎉</p>
+      <section
+        className={clsx("status", {
+          won: isGameWon,
+          lost: isGameLost,
+        })}
+      >
+        {renderStatus()}
       </section>
       <section className="languages">{langlist}</section>
       <section className="word">{word}</section>
       <section className="keyboard">{keyboard}</section>
-      {isGameOver? <button className="newgamebtn">New Game</button>:null}
+      {isGameOver ? <button className="newgamebtn">New Game</button> : null}
     </main>
   );
 }
