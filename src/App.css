@@ -114,6 +114,9 @@ header p {
   max-width: 30rem;
   gap: 0.4rem;
 }
+.keyboard.disabled{
+  opacity: 50%;
+}
 
 .key {
   background-color: #fcba29;
@@ -129,7 +132,9 @@ header p {
   cursor: pointer;
   font-family: inherit;
 }
-
+.key.disabled{
+  cursor: default;
+}
 .key.clicked.correct {
   background-color: #10a95b;
 }

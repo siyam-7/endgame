@@ -31,11 +31,12 @@ export default function App() {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   const keyboard = alphabet.map((key) => (
     <button
-      onClick={() => handleKey(key)}
+      onClick={isGameOver?null:() => handleKey(key)}
       className={clsx("key", {
         clicked: guessedLetter.includes(key),
         correct: letters.includes(key),
         wrong: !letters.includes(key),
+        disabled:isGameOver
       })}
     >
       {key}
@@ -96,7 +97,9 @@ export default function App() {
       </section>
       <section className="languages">{langlist}</section>
       <section className="word">{word}</section>
-      <section className="keyboard">{keyboard}</section>
+      <section className={clsx("keyboard",{
+        disabled:isGameOver
+      })}>{keyboard}</section>
       {isGameOver ? <button className="newgamebtn">New Game</button> : null}
     </main>
   );
