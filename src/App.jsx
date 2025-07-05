@@ -8,7 +8,9 @@ export default function App() {
   const [guessedLetter, setGuessedLetter] = useState([]);
   const letters = currentWord.toUpperCase().split("");
   const wrongGuessCount = guessedLetter.filter(letter=>!letters.includes(letter)).length;
-  const isGameOver = wrongGuessCount>=8;
+  const isGameWon = letters.every(letter => guessedLetter.includes(letter));
+  const isGameLost = wrongGuessCount>=languages.length-1;
+  const isGameOver = isGameWon||isGameLost;
 
   const word = letters.map((letter) => (
     <span>{guessedLetter.includes(letter) ? letter : "\u00A0"}</span>
