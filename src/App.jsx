@@ -7,7 +7,9 @@ import { getFarewellText } from "./utils";
 export default function App() {
   const [currentWord, setCurrentWord] = useState("react");
   const [guessedLetter, setGuessedLetter] = useState([]);
-  const [clickedLetter,setClickedLetter] = useState('');
+  const [clickedLetter, setClickedLetter] = useState("");
+
+  const attemptsLeft = languages.length - 1;
   const letters = currentWord.toUpperCase().split("");
   const wrongGuessCount = guessedLetter.filter(
     (letter) => !letters.includes(letter)
@@ -31,13 +33,15 @@ export default function App() {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   const keyboard = alphabet.map((key) => (
     <button
-      onClick={isGameOver?null:() => handleKey(key)}
+      onClick={isGameOver ? null : () => handleKey(key)}
       disabled={isGameOver}
+      aria-disabled={guessedLetter.includes(key)}
+      aria-label={`Letter ${key}`}
       className={clsx("key", {
         clicked: guessedLetter.includes(key),
         correct: letters.includes(key),
         wrong: !letters.includes(key),
-        disabled:isGameOver
+        disabled: isGameOver,
       })}
     >
       {key}
@@ -51,13 +55,11 @@ export default function App() {
     );
   }
   function renderStatus() {
-    if(!isGameOver&&letters.includes(clickedLetter)){
+    if (!isGameOver && letters.includes(clickedLetter)) {
       return null;
     }
-    if(!isGameOver&&wrongGuessCount>0){
-      return(
-        `${getFarewellText(languages[wrongGuessCount-1].name)}🫡`
-      )
+    if (!isGameOver && wrongGuessCount > 0) {
+      return `${getFarewellText(languages[wrongGuessCount - 1].name)}🫡`;
     }
     if (!isGameOver) {
       return null;
@@ -88,8 +90,13 @@ export default function App() {
         </p>
       </header>
       <section
+        aria-live="polite"
+        role="status"
         className={clsx("status", {
-          farewell:!isGameOver&&guessedLetter.length>0&&!letters.includes(clickedLetter),
+          farewell:
+            !isGameOver &&
+            guessedLetter.length > 0 &&
+            !letters.includes(clickedLetter),
           won: isGameWon,
           lost: isGameLost,
         })}
@@ -98,6 +105,23 @@ export default function App() {
       </section>
       <section className="languages">{langlist}</section>
       <section className="word">{word}</section>
+      <section className="sr-only" aria-live="polite" role="status">
+        <p>
+          {currentWord.includes(clickedLetter)
+            ? `Correct! The letter ${clickedLetter} is in the word.`
+            : `Sorry, the letter ${clickedLetter} is not in the word.`}
+          You have {attemptsLeft} attempts left.
+        </p>
+        <p>
+          Current word:
+          {currentWord
+            .split("")
+            .map((letter) =>
+              guessedLetter.includes(letter) ? letter + "." : "blank."
+            )
+            .join(" ")}
+        </p>
+      </section>
       <section className="keyboard">{keyboard}</section>
       {isGameOver ? <button className="newgamebtn">New Game</button> : null}
     </main>
