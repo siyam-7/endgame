@@ -4,8 +4,9 @@ import "./App.css";
 import Language from "./Language";
 import { languages } from "./languages";
 import { getFarewellText } from "./utils";
+import { getWord } from "./utils";
 export default function App() {
-  const [currentWord, setCurrentWord] = useState("react");
+  const [currentWord, setCurrentWord] = useState(getWord());
   const [guessedLetter, setGuessedLetter] = useState([]);
   const [clickedLetter, setClickedLetter] = useState("");
 
