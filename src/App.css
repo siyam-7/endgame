@@ -41,11 +41,9 @@ header p {
   min-height: 3.7rem;
   margin: 20px;
   border-radius: 0.5rem;
+  box-sizing: border-box;
 }
 .status.farewell{
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #7A5EA7;
   border-radius: 0;
   border-style: dashed;
