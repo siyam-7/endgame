@@ -109,6 +109,9 @@ header p {
   min-width: 2.5rem;
   min-height: 2.5rem;
 }
+.letter.isMissing{
+  color: #ec5d49;
+}
 
 .keyboard {
   display: flex;

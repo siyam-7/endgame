@@ -6,7 +6,7 @@ import { languages } from "./languages";
 import { getFarewellText } from "./utils";
 import { getWord } from "./utils";
 export default function App() {
-  const [currentWord, setCurrentWord] = useState(()=>getWord());
+  const [currentWord, setCurrentWord] = useState(() => getWord());
   const [guessedLetter, setGuessedLetter] = useState([]);
   const [clickedLetter, setClickedLetter] = useState("");
 
@@ -19,9 +19,17 @@ export default function App() {
   const isGameLost = wrongGuessCount >= languages.length - 1;
   const isGameOver = isGameWon || isGameLost;
 
-  const word = letters.map((letter) => (
-    <span>{guessedLetter.includes(letter) ? letter : "\u00A0"}</span>
-  ));
+  const word = letters.map((letter, idx) =>
+    isGameOver ? (
+      <span className={clsx("letter",{
+        isMissing: !guessedLetter.includes(letter)
+      })} key={idx}>{letter}</span>
+    ) : (
+      <span key={idx}>
+        {guessedLetter.includes(letter) ? letter : "\u00A0"}
+      </span>
+    )
+  );
   const langlist = languages.map((language, index) => (
     <Language
       key={index}
@@ -81,6 +89,11 @@ export default function App() {
       );
     }
   }
+  function handleNewGame() {
+    setCurrentWord(getWord());
+    setGuessedLetter([]);
+    setClickedLetter("");
+  }
   return (
     <main>
       <header>
@@ -124,7 +137,11 @@ export default function App() {
         </p>
       </section>
       <section className="keyboard">{keyboard}</section>
-      {isGameOver ? <button className="newgamebtn">New Game</button> : null}
+      {isGameOver ? (
+        <button className="newgamebtn" onClick={handleNewGame}>
+          New Game
+        </button>
+      ) : null}
     </main>
   );
 }
