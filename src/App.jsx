@@ -21,9 +21,14 @@ export default function App() {
 
   const word = letters.map((letter, idx) =>
     isGameOver ? (
-      <span className={clsx("letter",{
-        isMissing: !guessedLetter.includes(letter)
-      })} key={idx}>{letter}</span>
+      <span
+        className={clsx("letter", {
+          isMissing: !guessedLetter.includes(letter),
+        })}
+        key={idx}
+      >
+        {letter}
+      </span>
     ) : (
       <span key={idx}>
         {guessedLetter.includes(letter) ? letter : "\u00A0"}
@@ -115,7 +120,7 @@ export default function App() {
           lost: isGameLost,
         })}
       >
-        {renderStatus()}
+       {renderStatus()}
       </section>
       <section className="languages">{langlist}</section>
       <section className="word">{word}</section>
