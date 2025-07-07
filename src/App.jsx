@@ -46,17 +46,17 @@ export default function App() {
     />
   ));
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  const keyboard = alphabet.map((key) => (
+  const keyboard = alphabet.map((key,idx) => (
     <button
+      key={idx}
       onClick={isGameOver ? null : () => handleKey(key)}
-      disabled={isGameOver}
+      disabled={isGameOver||guessedLetter.includes(key)}
       aria-disabled={guessedLetter.includes(key)}
       aria-label={`Letter ${key}`}
       className={clsx("key", {
         clicked: guessedLetter.includes(key),
         correct: letters.includes(key),
         wrong: !letters.includes(key),
-        disabled: isGameOver,
       })}
     >
       {key}
