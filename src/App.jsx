@@ -5,6 +5,7 @@ import Language from "./Language";
 import { languages } from "./languages";
 import { getFarewellText } from "./utils";
 import { getWord } from "./utils";
+import Confetti from "react-confetti"; 
 export default function App() {
   const [currentWord, setCurrentWord] = useState(() => getWord());
   const [guessedLetter, setGuessedLetter] = useState([]);
@@ -101,6 +102,7 @@ export default function App() {
   }
   return (
     <main>
+    {isGameWon && <Confetti/>}
       <header>
         <h2>Assembly: Endgame</h2>
         <p>
